@@ -11,3 +11,14 @@
 *.lai
 *.la
 *.a
+
+# emacs
+*~
+
+# cmake
+Makefile
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+src/CMakeFiles/
+src/cmake_install.cmake
