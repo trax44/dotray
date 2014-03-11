@@ -2,6 +2,7 @@
 #define DOTARAY_COMMONTYPES_H_
 
 #include <cstdint>
+#include <cassert>
 #include <boost/serialization/strong_typedef.hpp>
 
 using std::uint64_t;

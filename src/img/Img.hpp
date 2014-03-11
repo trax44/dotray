@@ -5,7 +5,6 @@
 #include <vector>
 #include "utils/commonTypes.hpp"
 
-
 namespace dotray {
 
 namespace img {
@@ -23,14 +22,14 @@ enum ImgType {
 template <typename Pixel>
 class ImgTempl {
 private:
-  W w;
-  H h;
+  const W w;
+  const H h;
 
 public:
   ImgTempl(const W w, const H h) : w(w), h(h){}
   virtual ~ImgTempl(){}
 
-  virtual Pixel getPixel (const W, const H) = 0;
+  virtual Pixel getPixel (const W, const H) const = 0;
   virtual void  setPixel (const W, const H, const Pixel) = 0;
 };
 
@@ -42,21 +41,30 @@ template <>
 class Img <RGB_255> : public ImgTempl <PixelTypeRGB_255>{
 public:
   typedef PixelTypeRGB_255 Pixel;
+
+private:
+  typedef std::vector<Pixel> Data;
+  Data data;
+
 public:
 
-  Img(W w, H h) : ImgTempl<PixelTypeRGB_255>(w, h){}
+  Img(const W w, const H h) : ImgTempl<PixelTypeRGB_255>(w, h),
+                  data(h*(w+1)){}
 
   
-  Pixel getPixel (const W, const H);
+  Pixel getPixel (const W, const H) const ;
   void  setPixel (const W w, const H h, const Pixel t);
 };
 
 
-Img<RGB_255>::Pixel Img<RGB_255>::getPixel (const W, const H) {
-  return 0;
+Img<RGB_255>::Pixel Img<RGB_255>::getPixel (const W w, const H h) const {
+  assert (static_cast<size_t>((h*(w+1))) <= data.size());
+  return data[h*(w+1)];
 }
+
 void  Img<RGB_255>::setPixel (const W w, const H h, const Pixel t) {
-  
+  assert (static_cast<size_t>(h*(w+1)) <= data.size());
+  data[h*(w+1)] = t;
 }
 
 
