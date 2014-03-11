@@ -9,11 +9,11 @@ namespace dotray {
 
 namespace img {
 
-typedef uint8_t PixelTypeRGB_255;
+typedef uint8_t PixelTypeGREY_255;
 
 enum ImgType {
   BLACK_WHITE = 1,
-  RGB_255 = 2,
+  GREY_255 = 2,
   RGB_3_255 = 3
 };
 
@@ -51,14 +51,14 @@ class Img;
 
 
 template <>
-class Img <RGB_255> : public ImgTempl <PixelTypeRGB_255, 
-                                       std::vector<PixelTypeRGB_255> >{
+class Img <GREY_255> : public ImgTempl <PixelTypeGREY_255, 
+                                       std::vector<PixelTypeGREY_255> >{
 public:
-  typedef PixelTypeRGB_255 Pixel;
+  typedef PixelTypeGREY_255 Pixel;
 
 public:
   
-  Img(const W w, const H h) : ImgTempl<PixelTypeRGB_255, Data>(w, h) {
+  Img(const W w, const H h) : ImgTempl<PixelTypeGREY_255, Data>(w, h) {
     data.resize(w*h);
   }
 
@@ -72,22 +72,22 @@ public:
 };
 
 
-Img<RGB_255>::Pixel Img<RGB_255>::getPixel (const W _w, const H _h) const {
+Img<GREY_255>::Pixel Img<GREY_255>::getPixel (const W _w, const H _h) const {
   assert (static_cast<size_t>(PIX_POS(_w,_h)) <= data.size());
   return data[PIX_POS(_w, _h)];
 }
 
-void  Img<RGB_255>::setPixel (const W _w, const H _h, const Pixel t) {
+void  Img<GREY_255>::setPixel (const W _w, const H _h, const Pixel t) {
   assert (static_cast<size_t>(PIX_POS(_w,_h)) <= data.size());
   data[PIX_POS(_w, _h)] = t;
 }
 
 
-Img<RGB_255>::iterator Img<RGB_255>::begin(){
+Img<GREY_255>::iterator Img<GREY_255>::begin(){
   return data.begin();
 }
 
-Img<RGB_255>::iterator Img<RGB_255>::end(){
+Img<GREY_255>::iterator Img<GREY_255>::end(){
   return data.end();
 }
 

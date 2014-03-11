@@ -7,7 +7,7 @@
 using namespace dotray::img;
 
 BOOST_AUTO_TEST_CASE( get_set_pixel ) {
-  Img<RGB_255> img(W(1920), H(1080));
+  Img<GREY_255> img(W(1920), H(1080));
   
   img.setPixel(W(0),H(0),0);
   BOOST_CHECK_EQUAL(img.getPixel(W(0), H(0)) , 0);
@@ -20,7 +20,7 @@ BOOST_AUTO_TEST_CASE( get_set_pixel ) {
 }
 
 BOOST_AUTO_TEST_CASE( begin_end ) {
-  Img<RGB_255> img(W(17), H(13));
+  Img<GREY_255> img(W(17), H(13));
   
   int c = 0;
 
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE( begin_end ) {
 }
 
 BOOST_AUTO_TEST_CASE( get_size ) {
-  Img<RGB_255> img(W(17), H(13));
+  Img<GREY_255> img(W(17), H(13));
   BOOST_CHECK_EQUAL(img.getHeight() , 13);
   BOOST_CHECK_EQUAL(img.getWidth() , 17);
 }
