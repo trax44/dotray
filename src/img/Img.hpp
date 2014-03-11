@@ -24,6 +24,7 @@ class ImgTempl {
 public:
   typedef MyContainer Data;
   typedef typename MyContainer::iterator iterator;
+  typedef typename MyContainer::const_iterator const_iterator;
   
 protected:
   const W w;
@@ -42,7 +43,10 @@ public:
   virtual void  setPixel (const W, const H, const Pixel) = 0;
 
   virtual iterator begin() = 0;
-  virtual iterator end() = 0;
+  virtual iterator end  () = 0;
+
+  virtual const_iterator cbegin() const = 0;
+  virtual const_iterator cend  () const = 0;
 
 };
 
@@ -69,6 +73,9 @@ public:
   iterator begin();
   iterator end();
   
+  const_iterator cbegin ()const;
+  const_iterator cend   ()const;
+  
 };
 
 
@@ -89,6 +96,14 @@ Img<GREY_255>::iterator Img<GREY_255>::begin(){
 
 Img<GREY_255>::iterator Img<GREY_255>::end(){
   return data.end();
+}
+
+Img<GREY_255>::const_iterator Img<GREY_255>::cbegin() const{
+  return data.cbegin();
+}
+
+Img<GREY_255>::const_iterator Img<GREY_255>::cend() const{
+  return data.cend();
 }
 
 } // img
