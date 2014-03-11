@@ -19,14 +19,17 @@ enum ImgType {
 
 #define PIX_POS(_W,_H) ((_W + w*_H))
 
-template <typename Pixel, class MyContainerIterator>
+template <typename Pixel, class MyContainer>
 class ImgTempl {
 public:
-  typedef MyContainerIterator iterator;
-
+  typedef MyContainer Data;
+  typedef typename MyContainer::iterator iterator;
+  
 protected:
   const W w;
   const H h;
+
+  MyContainer data;
 
 public:
   ImgTempl(const W w, const H h) : w(w), h(h){}
@@ -35,8 +38,8 @@ public:
   virtual Pixel getPixel (const W, const H) const = 0;
   virtual void  setPixel (const W, const H, const Pixel) = 0;
 
-  virtual MyContainerIterator begin() = 0;
-  virtual MyContainerIterator end() = 0;
+  virtual iterator begin() = 0;
+  virtual iterator end() = 0;
 
 };
 
@@ -46,22 +49,15 @@ class Img;
 
 template <>
 class Img <RGB_255> : public ImgTempl <PixelTypeRGB_255, 
-                                       std::vector<PixelTypeRGB_255>::iterator >{
+                                       std::vector<PixelTypeRGB_255> >{
 public:
   typedef PixelTypeRGB_255 Pixel;
 
-
-private:
-  typedef std::vector<Pixel> Data;
-
-  Data data;
-  typedef typename std::vector<PixelTypeRGB_255>::iterator iterator;
-
 public:
-
-  Img(const W w, const H h) : ImgTempl<PixelTypeRGB_255, 
-                                       Data::iterator >(w, h),
-                  data(w*h){}
+  
+  Img(const W w, const H h) : ImgTempl<PixelTypeRGB_255, Data>(w, h) {
+    data.resize(w*h);
+  }
 
   
   Pixel getPixel (const W, const H) const ;
