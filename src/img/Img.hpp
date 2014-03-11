@@ -17,11 +17,14 @@ enum ImgType {
   RGB_3_255 = 3
 };
 
+#define PIX_POS(_W,_H) ((_W + w*_H))
 
-
-template <typename Pixel>
+template <typename Pixel, class MyContainerIterator>
 class ImgTempl {
-private:
+public:
+  typedef MyContainerIterator iterator;
+
+protected:
   const W w;
   const H h;
 
@@ -31,6 +34,10 @@ public:
 
   virtual Pixel getPixel (const W, const H) const = 0;
   virtual void  setPixel (const W, const H, const Pixel) = 0;
+
+  virtual MyContainerIterator begin() = 0;
+  virtual MyContainerIterator end() = 0;
+
 };
 
 template <int>
@@ -38,35 +45,52 @@ class Img;
 
 
 template <>
-class Img <RGB_255> : public ImgTempl <PixelTypeRGB_255>{
+class Img <RGB_255> : public ImgTempl <PixelTypeRGB_255, 
+                                       std::vector<PixelTypeRGB_255>::iterator >{
 public:
   typedef PixelTypeRGB_255 Pixel;
 
+
 private:
   typedef std::vector<Pixel> Data;
+
   Data data;
+  typedef typename std::vector<PixelTypeRGB_255>::iterator iterator;
 
 public:
 
-  Img(const W w, const H h) : ImgTempl<PixelTypeRGB_255>(w, h),
-                  data(h*(w+1)){}
+  Img(const W w, const H h) : ImgTempl<PixelTypeRGB_255, 
+                                       Data::iterator >(w, h),
+                  data(w*h){}
 
   
   Pixel getPixel (const W, const H) const ;
   void  setPixel (const W w, const H h, const Pixel t);
+
+  iterator begin();
+  iterator end();
+  
 };
 
 
-Img<RGB_255>::Pixel Img<RGB_255>::getPixel (const W w, const H h) const {
-  assert (static_cast<size_t>((h*(w+1))) <= data.size());
-  return data[h*(w+1)];
+Img<RGB_255>::Pixel Img<RGB_255>::getPixel (const W _w, const H _h) const {
+  assert (static_cast<size_t>(PIX_POS(_w,_h)) <= data.size());
+  return data[PIX_POS(_w, _h)];
 }
 
-void  Img<RGB_255>::setPixel (const W w, const H h, const Pixel t) {
-  assert (static_cast<size_t>(h*(w+1)) <= data.size());
-  data[h*(w+1)] = t;
+void  Img<RGB_255>::setPixel (const W _w, const H _h, const Pixel t) {
+  assert (static_cast<size_t>(PIX_POS(_w,_h)) <= data.size());
+  data[PIX_POS(_w, _h)] = t;
 }
 
+
+Img<RGB_255>::iterator Img<RGB_255>::begin(){
+  return data.begin();
+}
+
+Img<RGB_255>::iterator Img<RGB_255>::end(){
+  return data.end();
+}
 
 } // img
 
@@ -74,13 +98,6 @@ void  Img<RGB_255>::setPixel (const W w, const H h, const Pixel t) {
 } // dotray
 
 #endif /* DOTRAY */
-
-
-
-
-
-
-
 
 
 
