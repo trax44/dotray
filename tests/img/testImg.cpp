@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE( get_set_pixel ) {
   BOOST_CHECK_EQUAL(img.getPixel(W(1919), H(1079)) , 127);
 }
 
-BOOST_AUTO_TEST_CASE( begin_end ) {
+BOOST_AUTO_TEST_CASE( iterators ) {
   Img<GREY_255> img(W(17), H(13));
   
   int c = 0;
@@ -35,6 +35,16 @@ BOOST_AUTO_TEST_CASE( begin_end ) {
   for (auto 
          it  = img.begin() ,
          end = img.end() ; it != end ; ++it){
+    
+    BOOST_CHECK_EQUAL(*it, (c%256));
+    c++;
+    
+  }
+
+  c = 0;
+  for (auto 
+         it  = img.cbegin() ,
+         end = img.cend() ; it != end ; ++it){
     
     BOOST_CHECK_EQUAL(*it, (c%256));
     c++;
