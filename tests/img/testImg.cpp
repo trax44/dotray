@@ -43,20 +43,8 @@ BOOST_AUTO_TEST_CASE( begin_end ) {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+BOOST_AUTO_TEST_CASE( get_size ) {
+  Img<RGB_255> img(W(17), H(13));
+  BOOST_CHECK_EQUAL(img.getHeight() , 13);
+  BOOST_CHECK_EQUAL(img.getWidth() , 17);
+}

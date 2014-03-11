@@ -35,6 +35,9 @@ public:
   ImgTempl(const W w, const H h) : w(w), h(h){}
   virtual ~ImgTempl(){}
 
+  const W getWidth() const {return w;}
+  const H getHeight() const {return h;}
+
   virtual Pixel getPixel (const W, const H) const = 0;
   virtual void  setPixel (const W, const H, const Pixel) = 0;
 
