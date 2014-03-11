@@ -1,5 +1,9 @@
+add_library(Img
+img/Img.cpp
+img/Img.hpp
 
-add_library(
-Img.hpp
-Img.cpp
-)
+img/PGM.cpp
+img/PGM.hpp)
+
+
+include_directories(.)
