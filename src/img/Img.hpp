@@ -8,9 +8,8 @@
 namespace dotray {
 
 namespace img {
-
-typedef uint8_t PixelTypeGREY_255;
-
+typedef  uint8_t  PixelTypeGREY_255;
+typedef struct {uint8_t R,G,B;} PixelTypeRGB;
 enum ImgType {
   BLACK_WHITE = 1,
   GREY_255 = 2,
@@ -42,17 +41,31 @@ public:
   virtual Pixel getPixel (const W, const H) const = 0;
   virtual void  setPixel (const W, const H, const Pixel) = 0;
 
-  virtual iterator begin() = 0;
-  virtual iterator end  () = 0;
 
-  virtual const_iterator cbegin() const = 0;
-  virtual const_iterator cend  () const = 0;
+
+  virtual iterator begin(){
+    return data.begin();
+  }
+
+  virtual iterator end(){
+    return data.end();
+  }
+
+  virtual const_iterator cbegin() const{
+    return data.cbegin();
+  }
+
+  virtual const_iterator cend() const{
+    return data.cend();
+  }
+
+
+
 
 };
 
 template <int>
 class Img;
-
 
 template <>
 class Img <GREY_255> : public ImgTempl <PixelTypeGREY_255, 
@@ -62,7 +75,7 @@ public:
 
 public:
   
-  Img(const W w, const H h) : ImgTempl<PixelTypeGREY_255, Data>(w, h) {
+  Img(const W w, const H h) : ImgTempl<PixelTypeGREY_255, Data> (w, h) {
     data.resize(w*h);
   }
 
@@ -70,12 +83,24 @@ public:
   Pixel getPixel (const W, const H) const ;
   void  setPixel (const W w, const H h, const Pixel t);
 
-  iterator begin();
-  iterator end();
   
-  const_iterator cbegin ()const;
-  const_iterator cend   ()const;
+};
+
+template <>
+class Img <RGB_3_255> : public ImgTempl <PixelTypeRGB,
+					 std::vector<PixelTypeRGB> >{
+public:
+  typedef PixelTypeRGB Pixel;
+
+public:
   
+  Img(const W w, const H h) : ImgTempl<PixelTypeRGB, Data> (w, h) {
+    data.resize(w*h);
+  }
+
+  
+  Pixel getPixel (const W, const H) const ;
+  void  setPixel (const W w, const H h, const Pixel t);
 };
 
 

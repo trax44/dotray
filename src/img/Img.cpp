@@ -15,21 +15,14 @@ void  Img<GREY_255>::setPixel (const W _w, const H _h, const Pixel t) {
   data[PIX_POS(_w, _h)] = t;
 }
 
-
-Img<GREY_255>::iterator Img<GREY_255>::begin(){
-  return data.begin();
+Img<RGB_3_255>::Pixel Img<RGB_3_255>::getPixel (const W _w, const H _h) const {
+  assert (static_cast<size_t>(PIX_POS(_w,_h)) <= data.size());
+  return data[PIX_POS(_w, _h)];
 }
 
-Img<GREY_255>::iterator Img<GREY_255>::end(){
-  return data.end();
-}
-
-Img<GREY_255>::const_iterator Img<GREY_255>::cbegin() const{
-  return data.cbegin();
-}
-
-Img<GREY_255>::const_iterator Img<GREY_255>::cend() const{
-  return data.cend();
+void  Img<RGB_3_255>::setPixel (const W _w, const H _h, const Pixel t) {
+  assert (static_cast<size_t>(PIX_POS(_w,_h)) <= data.size());
+  data[PIX_POS(_w, _h)] = t;
 }
 
 

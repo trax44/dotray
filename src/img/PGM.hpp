@@ -15,6 +15,7 @@ namespace img {
 class PGM {
 public:
   static bool save (const std::string &filename, const Img<GREY_255> &img);
+  static bool save (const std::string &filename, const Img<RGB_3_255> &img);
 };
 
 

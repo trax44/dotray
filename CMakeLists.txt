@@ -19,3 +19,4 @@ find_package(Boost 1.53.0 COMPONENTS unit_test_framework)
 
 
 add_subdirectory (src)
+add_subdirectory (tests)
