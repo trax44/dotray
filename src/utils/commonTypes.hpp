@@ -17,6 +17,9 @@ using std::int8_t;
 
 BOOST_STRONG_TYPEDEF(uint16_t, W);
 BOOST_STRONG_TYPEDEF(uint16_t, H);
+BOOST_STRONG_TYPEDEF(uint16_t, X);
+BOOST_STRONG_TYPEDEF(uint16_t, Y);
+BOOST_STRONG_TYPEDEF(uint16_t, Z);
 
 
 #endif /* DOTARAY */
