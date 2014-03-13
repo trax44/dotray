@@ -3,6 +3,9 @@ img/Img.cpp
 img/Img.hpp
 img/PGM.cpp
 img/PGM.hpp)
+add_library(Math
+math/Vector.cpp
+math/Vector.hpp)
 
 add_library(Math
 math/Vector.cpp
