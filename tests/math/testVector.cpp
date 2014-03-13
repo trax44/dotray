@@ -42,11 +42,34 @@ BOOST_AUTO_TEST_CASE( normlize ) {
 }
 
 
+BOOST_AUTO_TEST_CASE( subtraction ) {
 
+    Vector va(X(10),Y(2),Z(30)),vb(X(1),Y(2),Z(40));
+    Vector vr = va - vb;
+    BOOST_CHECK_EQUAL(true, Vector(X(9),Y(0),Z(-10))==vr);
+}
 
+BOOST_AUTO_TEST_CASE( MultiplicationByAScalar ) {
 
+    Vector va(X(10),Y(2),Z(30)),vb(X(1),Y(2),Z(40));
+    Vector vr = va * 2;
+    BOOST_CHECK_EQUAL(true, Vector(X(20),Y(4),Z(60))==vr);
+    vr = 2 * vb;
+    BOOST_CHECK_EQUAL(true, Vector(X(2),Y(4),Z(80))==vr);
+}
 
+BOOST_AUTO_TEST_CASE( ScalarProduct ) {
 
+    Vector va(X(10),Y(2),Z(30)),vb(X(1),Y(2),Z(40));
+    int s = va * vb;
+    BOOST_CHECK_EQUAL(true, 1214==s);
+}
 
+BOOST_AUTO_TEST_CASE( VectorProduct ) {
 
-
+    Vector va(X(10),Y(2),Z(30)),vb(X(1),Y(2),Z(40));
+    Vector vr = va ^ vb;
+    BOOST_CHECK_EQUAL(true, Vector(X(20),Y(-370),Z(18))==vr);
+    vr = vb ^ va;
+    BOOST_CHECK_EQUAL(true, Vector(X(-20),Y(370),Z(-18))==vr);
+}
