@@ -30,11 +30,11 @@ Z Vector::getZ() const {
   return z;
 }
 
-const int operator*(const Vector & lhs, const Vector & rhs) {
+const Scal operator*(const Vector & lhs, const Vector & rhs) {
   return 
-    lhs.getX() * rhs.getX() + 
-    lhs.getY() * rhs.getY() + 
-    lhs.getZ() * rhs.getZ();
+    static_cast<Scal>(lhs.getX() * rhs.getX() + 
+                      lhs.getY() * rhs.getY() + 
+                      lhs.getZ() * rhs.getZ());
 }
 const Vector operator*(const int & lhs, const Vector & rhs) {
   return Vector(X(lhs*rhs.getX()), 

@@ -20,7 +20,7 @@ public :
   Z getZ() const;
 };
                 
-const int operator*(const Vector & lhs, const Vector & rhs);
+const Scal operator*(const Vector & lhs, const Vector & rhs);
 const Vector operator*(const int & lhs, const Vector & rhs);
 const Vector operator*(const Vector & lhs, const int & rhs);
 const Vector operator^(const Vector & lhs, const Vector & rhs);
