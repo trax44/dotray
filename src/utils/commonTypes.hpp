@@ -17,6 +17,15 @@ using std::int8_t;
 
 BOOST_STRONG_TYPEDEF(uint16_t, W);
 BOOST_STRONG_TYPEDEF(uint16_t, H);
+BOOST_STRONG_TYPEDEF(float, X);
+BOOST_STRONG_TYPEDEF(float, Y);
+BOOST_STRONG_TYPEDEF(float, Z);
+BOOST_STRONG_TYPEDEF(float, Scal);
+
+
+struct Color {
+  uint8_t r,g,b;
+};
 
 
 #endif /* DOTARAY */

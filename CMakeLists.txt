@@ -15,7 +15,7 @@ else()
         message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
-find_package(Boost 1.53.0 COMPONENTS unit_test_framework)
+find_package(Boost 1.46.0 COMPONENTS unit_test_framework)
 
 
 add_subdirectory (src)
