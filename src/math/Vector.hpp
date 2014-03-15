@@ -18,6 +18,11 @@ public :
   X getX() const;
   Y getY() const;
   Z getZ() const;
+
+  Scal norm() const;
+  void normalize();
+  Vector normalized() const;
+
 };
                 
 const Scal operator*(const Vector & lhs, const Vector & rhs);

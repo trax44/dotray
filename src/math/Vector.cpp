@@ -1,3 +1,4 @@
+#include <cmath>
 #include "Vector.hpp"
 namespace dotray {
 namespace math {
@@ -29,6 +30,42 @@ Y Vector::getY() const {
 Z Vector::getZ() const {
   return z;
 }
+
+Scal Vector::norm() const{
+  auto r = (x*x+y*y+z*z);
+  return Scal(std::sqrt(r));
+}
+
+void Vector::normalize() {
+  Scal d = norm();
+  Scal t;
+  
+
+  if (d != Scal(0.0f)) {
+    t= 1/d;
+    x *= t;
+    y *= t;
+    z *= t;
+  }
+}
+
+Vector Vector::normalized() const{
+  Scal d = norm();
+  Scal t;
+
+  Vector v = *this;
+
+  if (d != Scal(0)) {
+    t= 1/d;
+    v.x *= t;
+    v.y *= t;
+    v.z *= t;
+  }
+
+  return v;
+}
+
+
 
 const Scal operator*(const Vector & lhs, const Vector & rhs) {
   return 
