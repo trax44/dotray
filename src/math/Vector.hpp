@@ -12,6 +12,7 @@ class Vector {
   Y y;
   Z z;
 public :
+  Vector();
   Vector(const Vector &pointA, const Vector &pointB);
   Vector(const X x, const Y y, const Z z);
   X getX() const;

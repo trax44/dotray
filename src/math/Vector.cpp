@@ -3,6 +3,9 @@ namespace dotray {
 namespace math {
 namespace vector {
 
+Vector::Vector() {};
+
+
 Vector::Vector(const X x, 
                const Y y, 
                const Z z) : 
