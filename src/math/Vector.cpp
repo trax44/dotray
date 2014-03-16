@@ -74,43 +74,54 @@ void Vector::print() const{
 }
 
 
-        const Scal operator*(const Vector & lhs, const Vector & rhs) {
-            return 
-                static_cast<Scal>(lhs.getX() * rhs.getX() + 
-                                  lhs.getY() * rhs.getY() + 
-                                  lhs.getZ() * rhs.getZ());
-        }
-        const Vector operator*(const int & lhs, const Vector & rhs) {
-            return Vector(X(lhs*rhs.getX()), 
-                          Y(lhs*rhs.getY()), 
-                          Z(lhs*rhs.getZ()));
-        }
-        const Vector operator*(const Vector & lhs, const int & rhs) {
-            return Vector(X(lhs.getX()*rhs), 
-                          Y(lhs.getY()*rhs), 
-                          Z(lhs.getZ()*rhs));
-        }
-        const Vector operator^(const Vector & lhs, const Vector & rhs) {
-            return Vector(X(lhs.getY()*rhs.getZ()-lhs.getZ()*rhs.getY()), 
-                          Y(lhs.getZ()*rhs.getX()-lhs.getX()*rhs.getZ()), 
-                          Z(lhs.getX()*rhs.getY()-lhs.getY()*rhs.getX()));
-        }
-        const Vector operator+(const Vector & lhs, const Vector & rhs) {
-            return Vector(X(lhs.getX()+rhs.getX()), 
-                          Y(lhs.getY()+rhs.getY()), 
-                          Z(lhs.getZ()+rhs.getZ()));
-        }
-        const Vector operator-(const Vector & lhs, const Vector & rhs) {
-            return Vector(X(lhs.getX()-rhs.getX()), 
-                          Y(lhs.getY()-rhs.getY()), 
-                          Z(lhs.getZ()-rhs.getZ()));
-        }
-        const bool operator==(const Vector & lhs, const Vector & rhs) {
-            return 
-                lhs.getX() == rhs.getX() && 
-                lhs.getY() == rhs.getY() && 
-                lhs.getZ() == rhs.getZ(); 
-        }
+const Scal operator*(const Vector & lhs, const Vector & rhs) {
+  return 
+    static_cast<Scal>(lhs.getX() * rhs.getX() + 
+                      lhs.getY() * rhs.getY() + 
+                      lhs.getZ() * rhs.getZ());
+}
+const Vector operator*(const int & lhs, const Vector & rhs) {
+  return Vector(X(lhs*rhs.getX()), 
+                Y(lhs*rhs.getY()), 
+                Z(lhs*rhs.getZ()));
+}
+const Vector operator*(const Vector & lhs, const int & rhs) {
+  return Vector(X(lhs.getX()*rhs), 
+                Y(lhs.getY()*rhs), 
+                Z(lhs.getZ()*rhs));
+}
+const Vector operator^(const Vector & lhs, const Vector & rhs) {
+  return Vector(X(lhs.getY()*rhs.getZ()-lhs.getZ()*rhs.getY()), 
+                Y(lhs.getZ()*rhs.getX()-lhs.getX()*rhs.getZ()), 
+                Z(lhs.getX()*rhs.getY()-lhs.getY()*rhs.getX()));
+}
+const Vector operator+(const Vector & lhs, const Vector & rhs) {
+  return Vector(X(lhs.getX()+rhs.getX()), 
+                Y(lhs.getY()+rhs.getY()), 
+                Z(lhs.getZ()+rhs.getZ()));
+}
 
-    } //math
+const Vector operator+(const Vector & v, const X x){
+  return Vector(X(v.getX()+x), v.getY(), v.getZ());
+}
+const Vector operator+(const Vector & v, const Y y){
+  return Vector(v.getX(), Y(v.getY()+y), v.getZ());
+}
+const Vector operator+(const Vector & v, const Z z){
+  return Vector(v.getX(), v.getY(), Z(v.getZ()+z));
+}
+
+
+const Vector operator-(const Vector & lhs, const Vector & rhs) {
+  return Vector(X(lhs.getX()-rhs.getX()), 
+                Y(lhs.getY()-rhs.getY()), 
+                Z(lhs.getZ()-rhs.getZ()));
+}
+const bool operator==(const Vector & lhs, const Vector & rhs) {
+  return 
+    lhs.getX() == rhs.getX() && 
+    lhs.getY() == rhs.getY() && 
+    lhs.getZ() == rhs.getZ(); 
+}
+} //math
 } //dotray
