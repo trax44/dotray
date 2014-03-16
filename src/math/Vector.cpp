@@ -1,4 +1,6 @@
 #include <cmath>
+#include <iostream>
+
 #include "Vector.hpp"
 namespace dotray {
     namespace math {
@@ -64,6 +66,12 @@ Vector Vector::normalized() const{
   return v;
 }
 
+void Vector::print() const{
+  std::cout << "(" 
+            << x << " " 
+            << y << " "
+            << z << ")" << std::endl;
+}
 
 
         const Scal operator*(const Vector & lhs, const Vector & rhs) {
