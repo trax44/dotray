@@ -30,3 +30,11 @@ shapes/testPlan.cpp)
 target_link_libraries (PlanTest
 Shapes
 ${Boost_LIBRARIES})
+
+add_executable(CameraTest
+engine/testCamera.cpp)
+target_link_libraries (CameraTest
+Shapes
+Engine
+${Boost_LIBRARIES})
+

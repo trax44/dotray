@@ -23,5 +23,14 @@ target_link_libraries (Shapes
 Math
 )
 
+add_library(Engine 
+engine/Camera.hpp
+engine/Camera.cpp
+)
+target_link_libraries (Engine
+Shapes
+Img
+)
+
 
 include_directories(.)
