@@ -5,7 +5,7 @@
 #define BOOST_TEST_MODULE VectorTest
 #include <boost/test/unit_test.hpp>
 
-using namespace dotray::math::vector;
+using namespace dotray::math;
 
 
 

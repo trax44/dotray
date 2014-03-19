@@ -3,7 +3,7 @@
 
 #include "math/Vector.hpp"
 
-using namespace dotray::math::vector;
+using namespace dotray::math;
 
 namespace dotray {
 
