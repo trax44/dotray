@@ -17,6 +17,7 @@ endif()
 
 find_package(Boost 1.46.0 COMPONENTS unit_test_framework)
 
+enable_testing()
 
 add_subdirectory (src)
 add_subdirectory (tests)

@@ -20,10 +20,9 @@ BOOST_AUTO_TEST_CASE( iterator ) {
          end = camera.end() ; it != end ; ++it){
     Vector uv (X(-i%17),Y(int(i/13)), Z(0));
     Vector v = upper + uv;
-    
+    v.normalize();
 
     BOOST_CHECK_EQUAL(((*it).getVect() == (v+origin)), true);
-    std::cout << "**************************************************" << std::endl<< std::endl<< std::endl;
 
     ++i;
   }

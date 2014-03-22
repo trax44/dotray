@@ -1,6 +1,10 @@
 
 include_directories(../src)
 
+
+INCLUDE(Dart)
+
+
 # img
 add_executable(imgTest
 img/testImg.cpp)
@@ -38,3 +42,8 @@ Shapes
 Engine
 ${Boost_LIBRARIES})
 
+add_test (imgTest imgTest) 
+add_test (PGMTest PGMTest) 
+add_test (VectorTest VectorTest)
+add_test (PlanTest PlanTest)
+add_test (CameraTest CameraTest)
