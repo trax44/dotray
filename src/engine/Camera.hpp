@@ -58,11 +58,11 @@ public:
 
 
 private:
-  math::vector::Vector vanishingPoint;
+  math::Vector vanishingPoint;
   img::Img<img::RGB_3_255> img;
   const Scal depth;
-  math::vector::Vector pointUpperCorner;
-  math::vector::Vector u, v;
+  math::Vector pointUpperCorner;
+  math::Vector u, v;
 
 public:
   Camera(const W w, const H h, const Scal depth, 
