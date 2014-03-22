@@ -16,15 +16,25 @@ Vector::Vector(const Vector &v) {
 
 Vector::Vector(const X x, 
                const Y y, 
-               const Z z) : 
-  x(x), y(y), z(z) {};
+               const Z z,
+               const bool normalizeMe) : 
+  x(x), y(y), z(z) {
+  if (normalizeMe){
+    normalize();
+  }
+};
 
 Vector::Vector(const Vector &pointA,
-               const Vector &pointB):
+               const Vector &pointB,
+               const bool normalizeMe):
   x(pointB.getX() - pointA.getX()),
   y(pointB.getY() - pointA.getY()),
-  z(pointB.getZ() - pointA.getZ()){}
-  
+  z(pointB.getZ() - pointA.getZ()){
+  if (normalizeMe){
+    normalize();
+  }
+}
+
 
 X Vector::getX() const {
   return x;

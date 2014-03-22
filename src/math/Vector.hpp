@@ -12,9 +12,16 @@ class Vector {
   Z z;
 public :
   Vector();
-  Vector(const Vector &pointA, const Vector &pointB);
-  Vector(const X x, const Y y, const Z z);
   Vector(const Vector &v);
+  Vector(const Vector &va, 
+         const Vector &vb, 
+         const bool normalize = false);
+
+  Vector(const X x, 
+         const Y y, 
+         const Z z, 
+         const bool normalize = false);
+
   X getX() const;
   Y getY() const;
   Z getZ() const;
