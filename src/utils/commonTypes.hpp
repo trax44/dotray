@@ -2,6 +2,7 @@
 #define DOTARAY_COMMONTYPES_H_
 
 #include <cstdint>
+#include <iostream>
 #include <cassert>
 #include <boost/serialization/strong_typedef.hpp>
 
@@ -22,6 +23,33 @@ BOOST_STRONG_TYPEDEF(float, Y);
 BOOST_STRONG_TYPEDEF(float, Z);
 BOOST_STRONG_TYPEDEF(float, Scal);
 
+#define Epsilon 0.001
+inline bool operator== (X a, X b) {
+  bool r;
+  
+  r =  ((a - b) < Epsilon);
+  std::cout << "operator== " << a << " " << b << ((r)?" true ":" false ") << a-b << std::endl;
+
+  return r;
+}
+
+
+inline bool operator== (Y a, Y b) {
+  bool r;
+  
+  r =  ((a - b) < Epsilon);
+  std::cout << "operator== " << a << " " << b << ((r)?" true ":" false ") << a-b << std::endl;
+
+  return r;
+}
+inline bool operator== (Z a, Z b) {
+  bool r;
+  
+  r =  ((a - b) < Epsilon);
+  std::cout << "operator== " << a << " " << b << ((r)?" true ":" false ") << a-b << std::endl;
+
+  return r;
+}
 
 struct Color {
   uint8_t r,g,b;
@@ -29,6 +57,9 @@ struct Color {
 
 
 #endif /* DOTARAY */
+
+
+
 
 
 

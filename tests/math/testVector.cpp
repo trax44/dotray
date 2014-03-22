@@ -11,15 +11,16 @@ BOOST_AUTO_TEST_CASE( constructors ){
   Vector v123 (X(1), Y(2), Z(3));
   Vector v654 (X(6), Y(5), Z(4));
 
-  BOOST_CHECK_EQUAL(v123.getX(), X(1));
-  BOOST_CHECK_EQUAL(v123.getY(), Y(2));
-  BOOST_CHECK_EQUAL(v123.getZ(), Z(3));
+  BOOST_CHECK_EQUAL(v123.getX() == X(1), true);
+  BOOST_CHECK_EQUAL(v123.getY() == Y(2), true);
+  BOOST_CHECK_EQUAL(v123.getZ() == Z(3), true);
 
 
   Vector minus(v123, v654);
-  BOOST_CHECK_EQUAL(minus.getX(), X(5));
-  BOOST_CHECK_EQUAL(minus.getY(), Y(3));
-  BOOST_CHECK_EQUAL(minus.getZ(), Z(1));
+  BOOST_CHECK_EQUAL(minus.getX() == X(5), true);
+  BOOST_CHECK_EQUAL(minus.getY() == Y(3), true);
+  BOOST_CHECK_EQUAL(minus.getZ() == Z(1), true);
+
 
 }
 
