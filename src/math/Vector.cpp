@@ -7,6 +7,12 @@ namespace dotray {
 
 Vector::Vector() {};
 
+Vector::Vector(const Vector &v) {
+  x = v.getX();
+  y = v.getY();
+  z = v.getZ();
+}
+
 
 Vector::Vector(const X x, 
                const Y y, 

@@ -14,6 +14,7 @@ public :
   Vector();
   Vector(const Vector &pointA, const Vector &pointB);
   Vector(const X x, const Y y, const Z z);
+  Vector(const Vector &v);
   X getX() const;
   Y getY() const;
   Z getZ() const;
