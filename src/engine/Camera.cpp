@@ -5,12 +5,15 @@ namespace dotray {
 namespace engine {
 
 
-Camera::Camera(const Vector &vanishingPoint, 
-               const W w, const H h, const Scal depth,
+Camera::Camera(const W w, const H h, const Scal depth,
                img::ImgType imgType) :
-  vanishingPoint(vanishingPoint),
+  vanishingPoint(X(0), Y(0), Z(0)),
   img(w,h),
-  depth (depth){}
+  depth (depth),
+  pointUpperCorner(X(w>>1), Y(h>>1), Z(depth)),
+  u(X(0),  Y(1), Z(0)),
+  v(X(-1), Y(0), Z(0))
+{}
 
 
 

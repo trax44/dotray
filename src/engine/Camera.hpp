@@ -12,74 +12,68 @@ namespace engine {
 class Camera {
 public:
 
-  struct iterator {
-  private:
-    Camera  &camera;
-    uint32_t pixPosition;
+struct iterator {
+private:
+Camera  &camera;
+  uint32_t pixPosition;
     
-  public:
-    const shapes::Line line;
-    iterator(Camera & camera, 
-             const uint32_t pixPosition, 
-             const Vector &vanishingPoint):
-      camera (camera),
-      pixPosition(pixPosition),
-      line (vanishingPoint,
-            {vanishingPoint, 
-                {X(vanishingPoint.getX()-(camera.img.getWidth()/2)),
-                    Y(vanishingPoint.getY()+(camera.img.getHeight()/2)),
-                    Z(vanishingPoint.getZ() + camera.depth)}
-            }) {}
+public:
+  iterator(Camera & camera, const uint32_t pixPosition):
+    camera (camera),
+    pixPosition(pixPosition){}
 
-    bool operator==(const iterator &a) {
-      return (a.pixPosition == pixPosition);
-    }
+  bool operator==(const iterator &a) {
+    return (a.pixPosition == pixPosition);
+  }
 
-    bool operator!=(const iterator &a) {
-      return (a.pixPosition != pixPosition);
-    }
+  bool operator!=(const iterator &a) {
+    return (a.pixPosition != pixPosition);
+  }
     
-    void operator++(){
-      ++pixPosition;
-    }
+  void operator++(){
+    ++pixPosition;
+  }
 
-    const shapes::Line operator *() {
-      X x(pixPosition%camera.img.getWidth());
-      Y y(pixPosition/camera.img.getWidth());
-      Z z(camera.depth);
+  const shapes::Line operator *() {
+    X x(pixPosition%camera.img.getWidth());
+    Y y(int(pixPosition/camera.img.getHeight()));
+    Z z(camera.depth);
 
-      Vector lineVect(camera.vanishingPoint,
-                      {X(x - (camera.img.getWidth()>>1)),  
-                          Y((camera.img.getHeight()>>1) - y), 
-                          Z(z + camera.vanishingPoint.getZ())});
+    Vector vect (camera.u * y + 
+                 camera.v * x + 
+                 camera.pointUpperCorner);
+
+    
+
+    Vector lineVect(camera.vanishingPoint, vect, true);
       
+    Vector v(camera.vanishingPoint, lineVect);
 
+    shapes::Line line (camera.vanishingPoint, v);
 
-      Vector v(camera.vanishingPoint, lineVect);
-      shapes::Line line (camera.vanishingPoint, v);
-      return line;
+    return line;
+  }
 
-    }
-
-  };
+};
 
 
 private:
-  const Vector vanishingPoint;
+  math::vector::Vector vanishingPoint;
   img::Img<img::RGB_3_255> img;
   const Scal depth;
-  
-public:
-  Camera(const Vector &vanishingPoint, 
-         const W w, const H h, const Scal depth, 
-         img::ImgType imgType);
+  math::vector::Vector pointUpperCorner;
+  math::vector::Vector u, v;
 
+public:
+  Camera(const W w, const H h, const Scal depth, 
+         img::ImgType imgType);
+  
   iterator begin(){
-    return iterator (*this, 0, vanishingPoint);
+    return iterator (*this, 0);
   }
 
   iterator end(){
-    return iterator (*this, img.getWidth() * img.getHeight(), vanishingPoint);
+    return iterator (*this, img.getWidth() * img.getHeight());
   }
 
 };
