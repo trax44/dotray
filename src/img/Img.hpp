@@ -9,7 +9,17 @@ namespace dotray {
 
 namespace img {
 typedef  uint8_t  PixelTypeGREY_255;
-typedef struct {uint8_t R,G,B;} PixelTypeRGB;
+typedef struct PixelTypeRGB{
+  uint8_t R,G,B;
+
+  PixelTypeRGB(){}
+  PixelTypeRGB(const Color &t){
+    R = t.r;
+    G = t.g;
+    B = t.b;
+  }
+}PixelTypeRGB;
+
 enum ImgType {
   BLACK_WHITE = 1,
   GREY_255 = 2,
@@ -40,6 +50,7 @@ public:
 
   virtual Pixel getPixel (const W, const H) const = 0;
   virtual void  setPixel (const W, const H, const Pixel) = 0;
+  virtual void  setPixel (const uint32_t pixPosition, const Pixel) = 0;
 
 
 
@@ -82,8 +93,8 @@ public:
   
   Pixel getPixel (const W, const H) const ;
   void  setPixel (const W w, const H h, const Pixel t);
+  void  setPixel (const uint32_t pixPosition, const Pixel t);
 
-  
 };
 
 template <>
@@ -101,6 +112,7 @@ public:
   
   Pixel getPixel (const W, const H) const ;
   void  setPixel (const W w, const H h, const Pixel t);
+  void  setPixel (const uint32_t pixPosition, const Pixel t);
 };
 
 
