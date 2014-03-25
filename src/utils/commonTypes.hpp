@@ -16,43 +16,41 @@ using std::int32_t;
 using std::int16_t;
 using std::int8_t;
 
-BOOST_STRONG_TYPEDEF(uint16_t, W);
-BOOST_STRONG_TYPEDEF(uint16_t, H);
-BOOST_STRONG_TYPEDEF(float, X);
-BOOST_STRONG_TYPEDEF(float, Y);
-BOOST_STRONG_TYPEDEF(float, Z);
-BOOST_STRONG_TYPEDEF(float, Scal);
+#define DOTRAY_STRONG_TYPEDEF(T, D)                                     \
+struct D                                                                \
+  : boost::totally_ordered1<D , boost::totally_ordered2< D, T > > {     \
+    T t;                                                                \
+    explicit D(const T t_) : t(t_) {};                                  \
+    D(){};                                                              \
+    D(const D & t_) : t(t_.t){}                                         \
+    D & operator=(const D & rhs) { t = rhs.t; return *this;}            \
+    D & operator=(const T & rhs) { t = rhs; return *this;}              \
+    operator const T & () const {return t; }                            \
+    operator T & () { return t; }                                       \
+};
+
+
+DOTRAY_STRONG_TYPEDEF(uint16_t, W);
+DOTRAY_STRONG_TYPEDEF(uint16_t, H);
+DOTRAY_STRONG_TYPEDEF(float, X);
+DOTRAY_STRONG_TYPEDEF(float, Y);
+DOTRAY_STRONG_TYPEDEF(float, Z);
+DOTRAY_STRONG_TYPEDEF(float, Scal);
 
 #define Epsilon 0.001
 inline bool operator== (X a, X b) {
-  bool r;
-  
-  r =  ((a - b) < Epsilon);
-  std::cout << "operator== " << a << " " << b << ((r)?" true ":" false ") << a-b << std::endl;
-
-  return r;
+  return ((a - b) < Epsilon);
 }
-
-
 inline bool operator== (Y a, Y b) {
-  bool r;
-  
-  r =  ((a - b) < Epsilon);
-  std::cout << "operator== " << a << " " << b << ((r)?" true ":" false ") << a-b << std::endl;
-
-  return r;
+  return ((a - b) < Epsilon);
 }
 inline bool operator== (Z a, Z b) {
-  bool r;
-  
-  r =  ((a - b) < Epsilon);
-  std::cout << "operator== " << a << " " << b << ((r)?" true ":" false ") << a-b << std::endl;
-
-  return r;
+  return ((a - b) < Epsilon);
 }
 
 struct Color {
-  uint8_t r,g,b;
+  float r,g,b;
+  float intensity;
 };
 
 
