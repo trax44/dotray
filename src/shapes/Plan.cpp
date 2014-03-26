@@ -27,8 +27,9 @@ const utils::Return<Scal> Plan::getIntersection(const Line &line,
   }
 
   Scal numerator = (p - line.getP()) * n;
+  Scal r = static_cast<Scal>(numerator/denumerator);
 
-  return {true, static_cast<Scal>(numerator/denumerator)};
+  return {((r > 0)?true:false), r};
 }
 
 
