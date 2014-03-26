@@ -26,7 +26,10 @@ Math
 add_library(Engine 
 engine/Camera.hpp
 engine/Camera.cpp
+engine/Engine.cpp
+engine/Engine.hpp
 )
+
 target_link_libraries (Engine
 Shapes
 Img
@@ -34,3 +37,12 @@ Img
 
 
 include_directories(.)
+
+
+add_executable(engine-test
+engine/main.cpp)
+
+target_link_libraries(engine-test
+Engine
+Shapes
+Img)
