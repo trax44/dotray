@@ -11,12 +11,14 @@ namespace img {
 typedef  uint8_t  PixelTypeGREY_255;
 typedef struct PixelTypeRGB{
   uint8_t R,G,B;
+  float intensity;
 
   PixelTypeRGB(){}
   PixelTypeRGB(const Color &t){
-    R = t.r;
-    G = t.g;
-    B = t.b;
+    R = 255*t.r;
+    G = 255*t.g;
+    B = 255*t.b;
+    intensity = t.intensity;
   }
 }PixelTypeRGB;
 
@@ -108,7 +110,6 @@ public:
   Img(const W w, const H h) : ImgTempl<PixelTypeRGB, Data> (w, h) {
     data.resize(w*h);
   }
-
   
   Pixel getPixel (const W, const H) const ;
   void  setPixel (const W w, const H h, const Pixel t);
@@ -123,6 +124,3 @@ public:
 } // dotray
 
 #endif /* DOTRAY */
-
-
-

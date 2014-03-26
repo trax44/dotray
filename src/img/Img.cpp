@@ -1,6 +1,5 @@
 #include "Img.hpp"
 
-
 namespace dotray {
 
 namespace img {
