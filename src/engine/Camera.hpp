@@ -14,13 +14,42 @@ public:
 
 struct iterator {
 private:
-Camera  &camera;
+  Camera  &camera;
   uint32_t pixPosition;
+  shapes::Line lineCache;    
+
+  void compute(){
+    Y y(pixPosition%camera.img.getWidth());
+    X x(int(pixPosition/camera.img.getWidth()));
+    Z z(camera.depth);
+
+    Vector vect (camera.u * y + 
+                 camera.v * x + 
+                 camera.pointUpperCorner);
     
+    Vector v(camera.vanishingPoint, vect, true);
+    lineCache = {camera.vanishingPoint, v};
+    if (x != x){
+      std::cout << std::endl;
+      std::cout << this << " " << pixPosition << std::endl;
+      std::cout << "PUC "; camera.pointUpperCorner.print();
+      std::cout << "u   "; camera.u.print();
+      std::cout << "v   "; camera.v.print();
+      std::cout << "vect"; vect.print();
+      std::cout << "x   " << x << " y " << y << std::endl;
+      std::cout << "V   "; v.print();
+      std::cout << "==============================" << std::endl;
+    }
+  }
+
 public:
   iterator(Camera & camera, const uint32_t pixPosition):
     camera (camera),
-    pixPosition(pixPosition){}
+    pixPosition(pixPosition){compute();}
+
+  void operator=(const Color &color){
+    camera.img.setPixel(pixPosition, color);
+  }
 
   bool operator==(const iterator &a) {
     return (a.pixPosition == pixPosition);
@@ -30,28 +59,15 @@ public:
     return (a.pixPosition != pixPosition);
   }
     
+  
+
   void operator++(){
     ++pixPosition;
+    compute();
   }
 
   const shapes::Line operator *() {
-    X x(pixPosition%camera.img.getWidth());
-    Y y(int(pixPosition/camera.img.getHeight()));
-    Z z(camera.depth);
-
-    Vector vect (camera.u * y + 
-                 camera.v * x + 
-                 camera.pointUpperCorner);
-
-    
-
-    Vector lineVect(camera.vanishingPoint, vect, true);
-      
-    Vector v(camera.vanishingPoint, lineVect);
-
-    shapes::Line line (camera.vanishingPoint, v);
-
-    return line;
+    return lineCache;
   }
 
 };
@@ -75,6 +91,10 @@ public:
   iterator end(){
     return iterator (*this, img.getWidth() * img.getHeight());
   }
+
+  img::Img<img::RGB_3_255> getImg() {
+    return img;
+  }  
 
 };
 
