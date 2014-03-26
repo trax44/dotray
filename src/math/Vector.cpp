@@ -3,7 +3,7 @@
 
 #include "Vector.hpp"
 namespace dotray {
-    namespace math {
+namespace math {
 
 Vector::Vector() {};
 
@@ -35,6 +35,12 @@ Vector::Vector(const Vector &pointA,
   }
 }
 
+
+void Vector::operator=(const Vector &v) {
+  x = v.getX();
+  y = v.getY();
+  z = v.getZ();
+}
 
 X Vector::getX() const {
   return x;

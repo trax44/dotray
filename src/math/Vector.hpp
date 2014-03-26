@@ -22,6 +22,8 @@ public :
          const Z z, 
          const bool normalize = false);
 
+  void operator=(const Vector &v);
+
   X getX() const;
   Y getY() const;
   Z getZ() const;
