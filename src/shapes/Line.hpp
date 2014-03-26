@@ -11,14 +11,18 @@ namespace shapes {
 
 class Line {
 private:
-  const Vector point;
-  const Vector vect;
+  Vector point;
+  Vector vect;
 public:
+  Line(){}
+  Line(const Line &line);
+  void operator=(const Line &line);
   Line(const Vector &point, 
        const Vector &vect);
   
   const Vector & getP()const {return point;}
   const Vector & getVect() const {return vect;}
+  void print() const;
   
 };
 
