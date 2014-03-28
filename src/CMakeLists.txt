@@ -18,7 +18,10 @@ shapes/Line.hpp
 shapes/Shape.hpp
 shapes/Plan.cpp
 shapes/Plan.hpp
+shapes/Triangle.cpp
+shapes/Triangle.hpp
 )
+
 target_link_libraries (Shapes
 Math
 )
