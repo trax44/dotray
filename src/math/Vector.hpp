@@ -12,7 +12,9 @@ class Vector {
   Z z;
 public :
   Vector();
-  Vector(const Vector &v);
+  Vector(const Vector &v, 
+         const bool normalize = false);
+
   Vector(const Vector &va, 
          const Vector &vb, 
          const bool normalize = false);
