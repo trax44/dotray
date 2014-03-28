@@ -13,9 +13,6 @@ Engine::Engine(Camera &camera, Shapes &shapes) :
   Color colorPlan = {0.4, 0.4, 0.4, 1};
   Color background = {0,0,0,0};
   Color color;
-
-  int black = 0;
-  int grey = 0;
   
   for (auto 
          it  = camera.begin(),
@@ -26,16 +23,11 @@ Engine::Engine(Camera &camera, Shapes &shapes) :
     if (r.success){
       color = colorPlan;
       color.intensity = (r.data);
-      std::cout << "intersectes " << r.data << std::endl;
-      grey++;
     }else {
       color = background;
-      black++;
     }
     it = color;
   }
-
-  std::cout << "black " << black << " grey " << grey << std::endl;
 
   auto img = getCamera().getImg();
   img::PGM::save ("plop.pgm", img);
