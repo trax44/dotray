@@ -54,10 +54,12 @@ bool PGM::save (const std::string &filename, const Img<RGB_3_255> &img) {
     intensityMin = std::min(it->intensity, intensityMin);
   }
   
-  if (intensityMax == 0){
+  if ((intensityMax-intensityMin) == 0){
     intensityMax = 65535;
+    intensityMin = 0;
   }
-  const float normalizeFactory (65535/(255*(intensityMax-intensityMin)));
+  
+  const float normalizeFactory ((65535/(intensityMax-intensityMin))*255);
 
   std::cout << "intensity range " << intensityMin 
             << " " << intensityMax 

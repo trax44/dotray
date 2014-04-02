@@ -13,10 +13,10 @@ BOOST_AUTO_TEST_CASE( Plan_intersection ) {
   const X x1(1); const Y y1(1); const Z z1(1);
 
   
-  Plan p  ({x0, y0, z0}, {x0, y0, z1});
+  Plan p  ({x0, y0, z1}, {x0, y0, Z(-z1)});
   Line d0 ({x1, y1, z1}, {x0, y1, z0});// // to the plan, no intersection
   Line d1 ({x0, y0, z0}, {x0, y1, z0});// // into the plan
-  Line d2 ({x0, y0, z1}, {x0, y0, z1});// one point intersection
+  Line d2 ({x1, y0, z0}, {x0, y0, z1});// one point intersection
   Line d3 ({x0, y0, z0}, {x0, y0, z1});// one point intersection
   
 
@@ -30,9 +30,9 @@ BOOST_AUTO_TEST_CASE( Plan_intersection ) {
   BOOST_CHECK_EQUAL (r1.success , false);
 
   BOOST_CHECK_EQUAL (r2.success , true);
-  BOOST_CHECK_EQUAL (r2.data    , -1);
+  BOOST_CHECK_EQUAL (r2.data    , 1);
 
   BOOST_CHECK_EQUAL (r3.success , true);
-  BOOST_CHECK_EQUAL (r3.data    , 0);
+  BOOST_CHECK_EQUAL (r3.data    , 1);
   
 }

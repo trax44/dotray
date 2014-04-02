@@ -31,6 +31,7 @@ BOOST_AUTO_TEST_CASE( PGM_img_RGB ) {
       p.R = h;
       p.G = w;
       p.B = c;
+      p.intensity = 1;
       img.setPixel(W(w), H(h), p);
       c++;
     }
