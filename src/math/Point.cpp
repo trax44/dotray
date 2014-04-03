@@ -18,5 +18,9 @@ namespace dotray {
             return z;
         }
 
+        Point::operator Vector() const {
+            return Vector(x,y,z);
+        }
+
     } //math
 } //dotray

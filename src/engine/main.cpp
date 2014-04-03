@@ -16,7 +16,7 @@ int main (int argc, char *argv[]){
 
   engine::Engine::Shapes shapes;
   
-  const math::Vector a(X(-300), Y(0), Z(0));
+  const math::Point a(X(-300), Y(0), Z(0));
   const math::Vector n(X(1), Y(0), Z(0));
   // const math::Vector a(X(0), Y(0), Z(30));
   // const math::Vector n(X(0), Y(0), Z(-1));

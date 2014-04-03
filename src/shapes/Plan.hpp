@@ -2,6 +2,7 @@
 #define DOTRAY_SHAPE_PLAN_H_
 
 #include "Shape.hpp"
+#include "math/Point.hpp"
 #include "math/Vector.hpp"
 using namespace dotray::math;
 
@@ -11,20 +12,20 @@ namespace shapes {
 
 class Plan :public Shape {
 private:
-  const Vector p;
+  const Point p;
   const Vector n;
   
 public:
 
-  Plan(const Vector &a, 
-       const Vector &b,
-       const Vector &c);
+  Plan(const Point &a, 
+       const Point &b,
+       const Point &c);
   
   /**
    * \param p point of the plan
    * \param n normal vector to the plan
    */
-  Plan(const Vector &p, 
+  Plan(const Point &p, 
        const Vector &n);
 
   const utils::Return<Scal> getIntersection(const Line &line,

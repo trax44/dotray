@@ -6,13 +6,13 @@ namespace dotray {
 namespace shapes {
 
 
-Plan::Plan(const Vector &a, 
-           const Vector &b,
-           const Vector &c) : 
+Plan::Plan(const Point &a, 
+           const Point &b,
+           const Point &c) : 
   p(b),
   n(a^c) {}
 
-Plan::Plan(const Vector &p, 
+Plan::Plan(const Point &p, 
            const Vector &n) :
   p(p),
   n(n){}
